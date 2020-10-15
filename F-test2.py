@@ -5,5 +5,6 @@
 
 
 print("Random F-test Check")
+print('Check update')
 # just a random f test check
 
