@@ -1,6 +1,6 @@
 import array
 
-S = 10
+S = 12
 S1 = 8
 
 a_min =  47.25 
