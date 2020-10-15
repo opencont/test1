@@ -24,7 +24,7 @@ class CombSort
 		boolean swapped = true; 
 
 		// Keep running while gap is more than 1 and last 
-		// iteration caused a swap 
+		// iteration caused a swapp 
 		while (gap != 1 || swapped == true) 
 		{ 
 			// Find next gap 
