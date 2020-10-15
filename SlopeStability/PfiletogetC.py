@@ -17,7 +17,7 @@ class Population:
     fitness = 0.0
     Sa3 = 0.0
     Sa31 = 0.0
-    Ua3 = 0.0
+    Ua3 = 1.0
     Ua31 = 0.0
 
     def __init__(self, X, Y, R, Sa3, Sa31, Ua3, Ua31):
