@@ -19,7 +19,7 @@ slopeBottm_x = 75.30
 slopeBottm_y = 45.00 
 
 slopeToe_x = 0.5 
-slopeToe_y = 70.00 
+slopeToe_y = 76.00
 
 Slope_BaseToe_x =  85.00  
 Slope_BaseToe_y = 45.00 
