@@ -1,6 +1,6 @@
 import array
 
-S = 10
+S = 12
 S1 = 8
 
 a_min =  47.25 
@@ -24,7 +24,7 @@ slopeToe_y = 76.00
 Slope_BaseToe_x =  85.00  
 Slope_BaseToe_y = 45.00 
 
-UnitWight = 20.0 
+UnitWight = 25.28 
 cohesion = array.array('d', [10,10,10,10,10,10,10,10,10])
 phi = array.array('d', [26.6,26.6,26.6,26.6,26.6,26.6,26.6,26.6,26.6]) 
 Pore_pressure = array.array('d', [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0])
