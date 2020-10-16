@@ -2,7 +2,7 @@
 class GFG 
 { 
 
-	static int RUN = 32; 
+	static int RUN = 33; 
 
 	// this function sorts array from left index to 
 	// to right index which is of size atmost RUN 
