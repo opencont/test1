@@ -13,7 +13,7 @@ R_min =  20.00
 R_max =  75.00
 
 slopeTop_x = 25.00 
-slopeTop_y = 70.00 
+slopeTop_y = 75.00 
 
 slopeBottm_x = 75.30 
 slopeBottm_y = 45.00 
