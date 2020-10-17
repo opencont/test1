@@ -5,7 +5,7 @@ from random import random
 from random import sample
 from random import uniform
 from constants import S, S1, a_min, a_max, b_min, b_max, R_min, R_max, slopeTop_x, slopeTop_y, slopeBottm_x, slopeBottm_y, slopeToe_x, slopeToe_y, Slope_BaseToe_x, Slope_BaseToe_y, UnitWight, cohesion, phi, Pore_pressure
-
+#importing libraRIES
 
 def initialise():
     population = []
