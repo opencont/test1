@@ -65,7 +65,10 @@ void canBeMerged(struct TreeNode* root, int a, int b){
 }
 int main()
 {
+    //Creating Tree with root
     struct TreeNode* root = createNode(1);
+    
+    //Inserting Nodes
     insertLeft(root, 2);
     insertRight(root, 3);
     insertLeft(root->left, 4);
