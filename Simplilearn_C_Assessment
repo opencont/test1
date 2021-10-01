@@ -1,0 +1,209 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define YMAX 75
+#define XMAX 20
+#define YMIN -75
+#define XMIN -20
+
+char Grid[41][151];
+
+void print_fun(){
+    printf("This code accpets equations in the form of: \n ax + by = c \n px + qy = r");
+    printf("\nEnter the values accordingly. \nChoose method \n1. Substitution method \n2. Matrix method \nEnter choice : ");
+}
+
+void print_mat(float *a, int n, int m){
+    int i, j;
+    for(i = 0; i < n; i++){
+        printf("\n");
+        for(j = 0; j < m; j++){
+            printf("%f ", *(a + i*m + j));
+        }
+    }
+}
+
+void grid_init(){
+    int i, j;
+    for(i = 0; i < 40; i++){
+        for(j = 0; j < 150; j++){
+            if(i == 0 || i == 39){
+                Grid[i][j] = '-';
+            }else if(j == 0 || j == 149){
+                Grid[i][j] ='|';
+            }else{
+                Grid[i][j] = ' ';
+            }
+        }
+    }
+}
+
+void print_grid(){
+    int i, j;
+    for(i = 0; i < 40; i++){
+        printf("\n");
+        for(j = 0; j < 150; j++){
+            printf("%c", Grid[i][j]);
+        }
+    }
+}
+
+void plot(float x, float y, float a, float b, char c){
+    int m = (int)x;
+    int n = (int)y;
+    int p = (int)a;
+    int q = (int)b;
+    if((q-n) > YMAX || (q-n) < YMIN || (p - m) > XMAX||(p - m) < XMIN){
+        return ;
+    }
+    Grid[p-m + 20][q-n + 75] = c;
+    return;
+}
+
+void sub_method(){
+    int i, j;
+    float a, b, c, p, q, r;
+    printf("Enter the values of a, b and c : ");
+    scanf("%f%f%f", &a, &b, &c);
+    printf("Enter the values of p, q and r : ");
+    scanf("%f%f%f", &p, &q, &r);
+    printf("The equations formed are %fx + %fy = %f and %fx + %fy = %f", a, b, c, p, q, r);
+    float m = b*p - a*q;
+    if(m != 0){
+        float y = (c*p - a*r)/m;
+        float x = (r - q*y)/p;
+        printf("\nThe solution of these equations lies at point (%f,%f)", x, y);
+        grid_init();
+        Grid[20][75] = '1';
+        for(i = -20 + (int)x; i < 20 + (int)y; i++){
+            float t = (c - a*i)/b;
+            plot(x, y, (float)i, t, '1');
+        }
+        for(i = -20 + (int)x; i < 20 + x; i++){
+            float t = (r - p*i)/q;
+            plot(x, y, (float)i, t, '2');
+        }
+        print_grid();
+    }else{
+        if((a == 0 || p == 0) && c!= 0 && r != 0){
+            float x = (float)(b/q);
+            float y = (float)(c/r);
+            if(x == y){
+                printf("\nThe equations are same and have infinite solution");
+            }else{
+                printf("\nThe equations are parallel and has no solution");
+            }
+        }else if((b == 0 || q == 0) && c!= 0 && r != 0){
+            float x = (float)(a/p);
+            float y = (float)(c/r);
+            if(x == y){
+                printf("\nThe equations are same and have infinite solution");
+            }else{
+                printf("\nThe equations are parallel and has no solution");
+            }
+        }else{
+            float x = (float)(a/p);
+            float y = (float)(b/q);
+            float z = (float)(c/r);
+            if(x == y && y == z){
+                printf("\nThe equations are parallel and have infinite solution");
+            }else if(x == y && y != z){
+                printf("\nThe equations are parallel and has no solution");
+            }else{
+                printf("\nInvalid equation");
+            }
+        }
+    }
+}
+
+void mat_method(){
+    float a[2][2], b[2][1];
+    int i, j, k;
+    printf("Enter the values of a, b and c : ");
+    scanf("%f%f%f", &a[0][0], &a[0][1], &b[0][0]);
+    printf("Enter the values of p, q and r : ");
+    scanf("%f%f%f", &a[1][0], &a[1][1], &b[1][0]);
+    float determinant = a[0][0]*a[1][1] - a[0][1]*a[1][0];
+    printf("The equations in matrix form are represented as:");
+    printf("\nMat(A): "); print_mat(a[0], 2 , 2);
+    printf("\nMat(X): \n x \n y");
+    printf("\nMat(B): "); print_mat(b[0], 2, 1);
+    printf("\nThe determinant of matrix A is %f", determinant);
+    float adj_a[2][2];
+    adj_a[0][0] = a[1][1];
+    adj_a[0][1] = -1*a[0][1];
+    adj_a[1][0] = -1*a[1][0];
+    adj_a[1][1] = a[0][0];
+    printf("\nThe adjoint of matrix A (Adj(A)):"); print_mat(adj_a[0], 2 ,2);
+    if(determinant){
+        float inv_a[2][2];
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 2; j++){
+                inv_a[i][j] = adj_a[i][j]/determinant;
+            }
+        }
+        printf("\nThe inverse of Matrix A (Inv(A)) : "); print_mat(inv_a[0], 2, 2);
+        float ai_b[2][1];
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 1; j++){
+                ai_b[i][j] = 0;
+                for(k = 0; k < 2; k++){
+                    ai_b[i][j] += inv_a[i][k] * b[k][j];   
+                }
+            }
+        }
+        printf("\nThe solution of these equations lies at point (%f,%f)", ai_b[0][0], ai_b[1][0]);
+        grid_init();
+        Grid[20][75] = '1';
+        for(i = -20 + (int)ai_b[0][0]; i < 20 + (int)ai_b[0][0]; i++){
+            float y = (b[0][0] - a[0][0]*i)/a[0][1];
+            plot(ai_b[0][0], ai_b[1][0], (float)i, y, '1');
+        }
+        for(i = -20 + (int)ai_b[0][0]; i < 20 + (int)ai_b[0][0]; i++){
+            float y = (b[1][0] - a[1][0]*i)/a[1][1];
+            plot(ai_b[0][0], ai_b[1][0], (float)i, y, '2');
+        }
+        print_grid();
+    }else{
+        float b_a[2][1];
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 1; j++){
+                b_a[i][j] = 0;
+                for(k = 0; k < 2; k++){
+                    b_a[i][j] += adj_a[i][k] * b[k][j];   
+                }
+            }
+        }
+        float res = 0;
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 1; j++){
+                res += abs(b_a[i][j]);
+            }
+        }
+        if(res){
+            printf("\nThe equations are parallel and do not have any solution. Inconsistent System.");
+        }else{
+            printf("\nThe equations are parallel and have infinitely many solutions. Consistent System.");
+        }
+    }
+    
+}
+
+int main(){
+    int inp;
+    print_fun();
+    scanf("%d", &inp);
+    switch(inp){
+        case 1: 
+            sub_method();
+            break;
+        case 2:
+            mat_method();
+            break;
+        default:
+            printf("Wrong Choice, Exiting !!!");
+            break;
+    }
+
+    return 0;
+}
