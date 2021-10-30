@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int x,y,z,ts,te,td,a,b,tstair,tlift;
+	cin>>x>>y>>z>>ts>>te>>td;
+	
+	a=z-x;
+	b=y-x;
+
+	if(a<0) 
+		a*=(-1);
+	if(b<0)
+		b*=(-1);
+	tstair=b*ts;
+	tlift=(b+a)*te+3*td;
+	if(tlift>tstair)
+		cout<<"NO";
+	else
+		cout<<"YES";
+
+
+	return 0;
+}
