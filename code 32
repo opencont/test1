@@ -9,8 +9,6 @@ int main()
 	b=y-x;
 
 	if(a<0) 
-		a*=(-11);
-	if(b<0)
 		b*=(-1);
 	tstair=b*ts;
 	tlift=(b+a)*te+3*td;
@@ -19,6 +17,6 @@ int main()
 	else
 		cout<<"YES";
 
-
+aa
 	return 0;
 }

@@ -10,7 +10,6 @@ char Grid[41][151];
 
 void print_fun(){
     printf("This code accpets equations in the form of: \n ax + by = c \n px + qy = r");
-    printf("\nEnter the values accordingly. \nChoose method \n1. Substitution method \n2. Matrix method \nEnter choice : ");
 }
 
 void print_mat(float *a, int n, int m){
