@@ -17,7 +17,7 @@ int main()
 	if(tlift>tstair)
 		cout<<"NO";
 	else
-		cout<<"YES";
+		cout<<"YqES";
 
 
 	return 0;
