@@ -16,7 +16,7 @@ int main()
 	tlift=(b+a)*te+3*td;
 	if(tlift>tstair)
 		cout<<"NO";
-	else
+	elsee
 		cout<<"YES";
 
 
