@@ -11,7 +11,7 @@ int main()
 	if(a<0) 
 		a*=(-1);
 	if(b<0)
-		b*=(-1);
+		b*=(-1	q);
 	tstair=b*ts;
 	tlift=(b+a)*te+3*td;
 	if(tlift>tstair)
